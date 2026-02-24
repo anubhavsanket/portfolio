@@ -1,0 +1,714 @@
+/* ===== NEW LAYOUT STYLES ===== */
+
+
+/* Sticky Glassmorphism Header */
+.glass-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 40px;
+    gap: 32px;
+
+    background: var(--glass-bg);
+    backdrop-filter: blur(8px) saturate(180%);
+    -webkit-backdrop-filter: blur(8px) saturate(180%);
+    border-bottom: 1px solid var(--glass-border);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+
+    transition: all 0.3s ease;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-main);
+}
+
+.header-name {
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--text-primary);
+}
+
+.header-divider {
+    color: var(--text-secondary);
+    opacity: 0.5;
+}
+
+.header-role {
+    font-size: 15px;
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+.header-nav {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-left: auto;
+}
+
+.nav-link {
+    font-size: 15px;
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+    color: var(--text-primary);
+    transform: scale(1.15);
+}
+
+.glass-header .theme-toggle {
+    position: static;
+    width: 36px;
+    height: 36px;
+    background: transparent;
+    border: 1px solid var(--glass-border);
+    transition: all 0.2s ease;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.15);
+}
+
+/* Hero Section */
+.hero-section {
+    min-height: 110vh;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 60px;
+    align-items: center;
+    padding: 120px 40px 80px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.hero-left {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.hero-name {
+    font-size: 5.50rem;
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    margin: 0;
+    transition: opacity 0.3s ease;
+}
+
+.hero-name.fading {
+    opacity: 0;
+}
+
+.hero-role {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    letter-spacing: 0.05em;
+    margin: 0;
+}
+
+.hero-bio {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.hero-bio p {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.hero-right {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.profile-pic-container {
+    width: 100%;
+    max-width: 350px;
+    padding: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-pic {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--glass-border);
+    background: rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.profile-pic:hover {
+    transform: scale(1.05) rotate(3deg);
+}
+
+.connect-box {
+    width: 100%;
+    max-width: 350px;
+    padding: 32px;
+}
+
+.connect-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0 0 20px 0;
+    color: var(--text-primary);
+}
+
+.connect-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.connect-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    border-radius: 16px;
+    background: rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+/* About Me Parallax Section */
+.parallax-about {
+    position: relative;
+    height: 400vh;
+    /* Tall container for scroll */
+    padding: 35vh 0 0 0;
+    margin: 0;
+}
+
+.about-parallax-container {
+    position: sticky;
+    top: 55vh;
+    transform: translateY(-50%);
+    height: 85vh;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.about-glass-tile {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: var(--glass-bg);
+    backdrop-filter: blur(40px) saturate(200%);
+    -webkit-backdrop-filter: blur(40px) saturate(200%);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.about-header {
+    height: 100px !important;
+    /* Override parallax-header default */
+    padding: 24px 45px 16px !important;
+}
+
+.about-layout-grid {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 60px;
+    align-items: flex-start;
+    padding: 110px 45px 32px;
+    /* top padding = header height */
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.about-left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    align-items: center;
+    padding-top: 8px;
+}
+
+.about-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-profile-pic {
+    width: 260px;
+    height: 260px;
+    border-radius: 28px;
+    object-fit: cover;
+    border: 2px solid var(--glass-border);
+    background: rgba(0, 0, 0, 0.2);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+}
+
+.about-profile-pic:hover {
+    transform: scale(1.04);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+/* The clipping viewport — GSAP animates the inner div UP inside this */
+.about-scroll-viewport {
+    overflow-y: auto;
+    /* enable vertical scrolling */
+    height: 100%;
+    position: relative;
+    /* Fade gradient at the bottom to indicate more content; extend gradient to show more content */
+    -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+}
+
+.about-scroll-content {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    padding-bottom: 2rem;
+    /* ensure last lines can be scrolled into view */
+}
+
+.about-scroll-content p {
+    font-size: 1rem;
+    line-height: 1.9;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.about-outro {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    margin-top: 10px !important;
+    padding-bottom: 32px;
+    /* Ensure last item is scrollable into view */
+}
+
+.resume-btn-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+body[data-theme="light"] .connect-link {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+.connect-link:hover {
+    background: var(--accent-color);
+    color: #000000;
+    transform: translateX(4px) scale(1.01);
+}
+
+body[data-theme="light"] .connect-link:hover {
+    background: var(--accent-color);
+    color: #FFFFFF;
+}
+
+.connect-link .arrow {
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+}
+
+.connect-link:hover .arrow {
+    opacity: 1;
+}
+
+/* Parallax Projects Section - Pinned Glass Tile */
+.parallax-projects {
+    position: relative;
+    height: 300vh;
+    /* Tall container for scroll effect */
+    padding: 5vh 0 0 0;
+    margin: 0;
+}
+
+.parallax-container {
+    position: sticky;
+    top: 55vh;
+    transform: translateY(-50%);
+    height: 85vh;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.parallax-glass-tile {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: var(--glass-bg);
+    backdrop-filter: blur(40px) saturate(200%);
+    -webkit-backdrop-filter: blur(40px) saturate(200%);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    border-radius: var(--radius);
+    padding: 40px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.parallax-header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 0;
+    padding: 35px 45px 20px;
+    background: rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(8px) saturate(180%);
+    -webkit-backdrop-filter: blur(8px) saturate(180%);
+    /* border-bottom: 1px solid var(--glass-border); */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 115px;
+    z-index: 10;
+}
+
+.parallax-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: var(--accent-color);
+    text-transform: uppercase;
+}
+
+.section-title {
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+}
+
+.projects-scroll-content {
+    position: absolute;
+    top: 140px;
+    left: 40px;
+    right: 40px;
+    bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    pointer-events: none;
+    padding-bottom: 1700px;
+}
+
+.project-card {
+    flex: 0 0 100% 0;
+    /* Each card takes full height of scroll container */
+    padding: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    pointer-events: auto;
+    transition: all 0.4s ease;
+    opacity: 0.3;
+}
+
+
+
+body[data-theme="light"] .project-card {
+    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.project-card.active {
+    opacity: 1;
+    transform: scale(1.03);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.5);
+    border-color: var(--accent-color);
+}
+
+body[data-theme="light"] .project-card.active {
+    background: rgba(255, 255, 255, 0.7);
+    border-color: var(--accent-color);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+.project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.project-tag {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--accent-color);
+    text-transform: uppercase;
+}
+
+.project-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--text-primary);
+}
+
+.project-desc {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin: 0;
+    flex-grow: 1;
+}
+
+.project-link {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.project-link:hover {
+    transform: translateX(2px);
+    opacity: 0.8;
+}
+
+/* Grid Container */
+.grid-container {
+    max-width: 1400px;
+    margin: -40vh auto 0;
+    padding: 0 40px 80px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--gap);
+}
+
+/* Tile Title (Replaces tile-header) */
+.tile-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 24px 0;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+/* Archive Tile */
+.archive-tile {
+    grid-column: span 12;
+}
+
+/* CTA Tile */
+.cta-tile {
+    grid-column: span 12;
+    text-align: center;
+}
+
+/* Footer */
+.footer-tile {
+    grid-column: span 12;
+    text-align: center;
+    padding: 15px 20px;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-tile p {
+    margin: 8px 0;
+    color: var(--text-secondary);
+    text-align: center;
+    transition: color 0.2s ease;
+}
+
+.footer-location {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    opacity: 0.75;
+}
+
+.resume-download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 16px;
+    padding: 12px 26px;
+    border-radius: 999px;
+    background: var(--accent-color);
+    border: 1px solid var(--glass-border);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bg);
+    transition: all 0.2s ease;
+    gap: 4px;
+    justify-content: space-between;
+
+}
+
+.resume-download-btn:hover {
+    transform: translateY(-1px) scale(1.1);
+    background-color: var(--accent-color);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 2px solid var(--glass-border);
+    color: var(--bg);
+}
+
+.cta-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin: 0 auto;
+    text-align: center;
+    display: block;
+}
+
+/* Responsive */
+
+@media (max-width: 1024px) {
+
+    .hero-section {
+        grid-template-columns: 1fr;
+        gap: 48px;
+        padding: 100px 32px 60px;
+    }
+
+    .hero-name {
+        font-size: 4rem;
+    }
+
+    .connect-box {
+        max-width: 100%;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-layout-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 110px 24px 32px;
+        height: auto;
+        text-align: center;
+    }
+
+    /* Unpin the About Me section on tablet/mobile */
+    .parallax-about {
+        height: auto;
+        padding: 60px 0;
+    }
+
+    .about-parallax-container {
+        position: relative;
+        top: 0;
+        transform: none;
+        height: auto;
+        padding: 0 24px;
+    }
+
+    .about-glass-tile {
+        height: auto;
+        overflow: visible;
+    }
+
+    .about-scroll-viewport {
+        overflow: visible;
+        height: auto;
+        -webkit-mask-image: none;
+        mask-image: none;
+    }
+
+    .about-scroll-content p {
+        text-align: center;
+    }
+
+    .about-left-column {
+        align-items: center;
+    }
+
+    .resume-btn-wrapper {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .glass-header {
+        padding: 12px 20px;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .header-left {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+
+    .header-divider {
+        display: none;
+    }
+
+    .header-nav {
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+
+    .nav-link {
+        font-size: 12px;
+    }
+
+    .hero-name {
+        font-size: 3rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .grid-container {
+        padding: 0 20px 60px;
+    }
+}

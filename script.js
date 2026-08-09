@@ -72,7 +72,153 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('theme', next);
     });
 
+    // ───────────────────────────────────────────────
+    // Background Node Graph
+    // ───────────────────────────────────────────────
+    const graphCanvas = document.getElementById('node-graph');
+    if (graphCanvas) {
+        const ctx = graphCanvas.getContext('2d');
+        let W, H;
+        let mouseX = -1000, mouseY = -1000;
+        const isMobile = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        const NODE_COUNT = isMobile ? 30 : 90;
+        const CONNECTION_DIST = 160;
+        const MOUSE_RADIUS = 120;
+
+        const nodes = [];
+
+        function resize() {
+            const dpr = Math.min(window.devicePixelRatio || 1, 2);
+            W = window.innerWidth;
+            H = window.innerHeight;
+            graphCanvas.width = W * dpr;
+            graphCanvas.height = H * dpr;
+            graphCanvas.style.width = W + 'px';
+            graphCanvas.style.height = H + 'px';
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        }
+
+        function createNodes() {
+            nodes.length = 0;
+            for (let i = 0; i < NODE_COUNT; i++) {
+                nodes.push({
+                    x: Math.random() * W,
+                    y: Math.random() * H,
+                    vx: (Math.random() - 0.5) * 0.3,
+                    vy: (Math.random() - 0.5) * 0.3,
+                    radius: Math.random() * 2.5 + 1.5,
+                });
+            }
+        }
+
+        function getColor() {
+            const theme = document.body.getAttribute('data-theme');
+            if (theme === 'light') return { r: 29, g: 0, b: 255 };
+            return { r: 226, g: 255, b: 0 };
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, W, H);
+            if (isMobile) return; // Static on mobile
+
+            const col = getColor();
+
+            // Update positions
+            for (const node of nodes) {
+                node.x += node.vx;
+                node.y += node.vy;
+
+                // Wrap around edges
+                if (node.x < -20) node.x = W + 20;
+                if (node.x > W + 20) node.x = -20;
+                if (node.y < -20) node.y = H + 20;
+                if (node.y > H + 20) node.y = -20;
+
+                // Mouse repulsion
+                const dx = node.x - mouseX;
+                const dy = node.y - mouseY;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < MOUSE_RADIUS && dist > 0) {
+                    const force = (MOUSE_RADIUS - dist) / MOUSE_RADIUS * 0.8;
+                    node.vx += (dx / dist) * force;
+                    node.vy += (dy / dist) * force;
+                }
+
+                // Damping
+                node.vx *= 0.99;
+                node.vy *= 0.99;
+            }
+
+            // Draw connections
+            for (let i = 0; i < nodes.length; i++) {
+                for (let j = i + 1; j < nodes.length; j++) {
+                    const dx = nodes[i].x - nodes[j].x;
+                    const dy = nodes[i].y - nodes[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < CONNECTION_DIST) {
+                        const alpha = (1 - dist / CONNECTION_DIST) * 0.25;
+                        ctx.beginPath();
+                        ctx.moveTo(nodes[i].x, nodes[i].y);
+                        ctx.lineTo(nodes[j].x, nodes[j].y);
+                        ctx.strokeStyle = `rgba(${col.r},${col.g},${col.b},${alpha})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            // Draw nodes
+            for (const node of nodes) {
+                // Check if near mouse for glow
+                const dx = node.x - mouseX;
+                const dy = node.y - mouseY;
+                const distToMouse = Math.sqrt(dx * dx + dy * dy);
+                const nearMouse = distToMouse < MOUSE_RADIUS;
+
+                const alpha = nearMouse ? 0.5 : 0.25;
+                const radius = nearMouse ? node.radius * 1.5 : node.radius;
+
+                ctx.beginPath();
+                ctx.arc(node.x, node.y, radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${col.r},${col.g},${col.b},${alpha})`;
+                ctx.fill();
+
+                // Glow for mouse-near nodes
+                if (nearMouse) {
+                    const glowAlpha = (1 - distToMouse / MOUSE_RADIUS) * 0.15;
+                    ctx.beginPath();
+                    ctx.arc(node.x, node.y, radius * 4, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(${col.r},${col.g},${col.b},${glowAlpha})`;
+                    ctx.fill();
+                }
+            }
+        }
+
+        function animate() {
+            draw();
+            requestAnimationFrame(animate);
+        }
+
+        // Mouse tracking
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        document.addEventListener('mouseleave', () => {
+            mouseX = -1000;
+            mouseY = -1000;
+        });
+
+        resize();
+        createNodes();
+        window.addEventListener('resize', () => { resize(); createNodes(); });
+        if (!isMobile) animate();
+    }
+
     // Year
     const y = document.getElementById('current-year');
     if (y) y.textContent = new Date().getFullYear();
+
 });

@@ -217,6 +217,7 @@ body[data-theme="light"] .moon-icon { display: none; }
     justify-content: center;
     padding: 0 40px;
     position: relative;
+    overflow: hidden;
 }
 
 .hero-inner {
@@ -224,6 +225,19 @@ body[data-theme="light"] .moon-icon { display: none; }
     display: flex;
     flex-direction: column;
     justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+
+/* ============================================
+   NODE GRAPH — Background visualization
+   ============================================ */
+#node-graph {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    z-index: -1;
+    pointer-events: none;
 }
 
 .hero-name {
@@ -232,6 +246,7 @@ body[data-theme="light"] .moon-icon { display: none; }
     line-height: 0.9;
     letter-spacing: -0.04em;
     margin-bottom: 32px;
+    word-break: break-word;
 }
 
 .hero-meta {

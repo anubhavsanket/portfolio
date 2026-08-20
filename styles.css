@@ -96,8 +96,8 @@ ul { list-style: none; }
         rgba(10,10,10,0.6) 70%,
         rgba(10,10,10,0.75) 100%
     );
-    backdrop-filter: blur(40px) saturate(200%) brightness(1.1);
-    -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(1.1);
+    backdrop-filter: blur(16px) saturate(150%) brightness(1.1);
+    -webkit-backdrop-filter: blur(16px) saturate(150%) brightness(1.1);
     border-bottom: 1px solid rgba(255,255,255,0.06);
     box-shadow: 0 1px 0 rgba(255,255,255,0.05) inset;
 }
@@ -164,8 +164,8 @@ body[data-theme="light"] .header {
         rgba(245,245,245,0.65) 70%,
         rgba(245,245,245,0.8) 100%
     );
-    backdrop-filter: blur(40px) saturate(180%) brightness(1.05);
-    -webkit-backdrop-filter: blur(40px) saturate(180%) brightness(1.05);
+    backdrop-filter: blur(16px) saturate(150%) brightness(1.05);
+    -webkit-backdrop-filter: blur(16px) saturate(150%) brightness(1.05);
     border-bottom: 1px solid rgba(0,0,0,0.06);
     box-shadow:
         0 1px 0 rgba(255,255,255,0.8) inset,
@@ -320,8 +320,8 @@ body[data-theme="light"] .moon-icon { display: none; }
         rgba(10,10,10,0.6) 70%,
         rgba(10,10,10,0.75) 100%
     );
-    backdrop-filter: blur(40px) saturate(200%) brightness(1.1);
-    -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(1.1);
+    backdrop-filter: blur(16px) saturate(150%) brightness(1.1);
+    -webkit-backdrop-filter: blur(16px) saturate(150%) brightness(1.1);
 }
 
 .hero-footer::before {
@@ -424,8 +424,8 @@ body[data-theme="light"] .hero-footer {
         rgba(245,245,245,0.65) 70%,
         rgba(245,245,245,0.8) 100%
     );
-    backdrop-filter: blur(40px) saturate(180%) brightness(1.05);
-    -webkit-backdrop-filter: blur(40px) saturate(180%) brightness(1.05);
+    backdrop-filter: blur(16px) saturate(150%) brightness(1.05);
+    -webkit-backdrop-filter: blur(16px) saturate(150%) brightness(1.05);
 }
 
 body[data-theme="light"] .hero-footer::before {
@@ -689,8 +689,8 @@ body[data-theme="light"] .work-tech span {
         rgba(255,255,255,0.04) 70%,
         rgba(255,255,255,0.07) 100%
     );
-    backdrop-filter: blur(20px) saturate(150%);
-    -webkit-backdrop-filter: blur(20px) saturate(150%);
+    backdrop-filter: blur(12px) saturate(130%);
+    -webkit-backdrop-filter: blur(12px) saturate(130%);
     border: 1px solid rgba(255,255,255,0.08);
     box-shadow: 0 1px 0 rgba(255,255,255,0.04) inset;
     transition: border-color 0.2s;
@@ -765,8 +765,8 @@ body[data-theme="light"] .work-tech span {
         rgba(255,255,255,0.04) 70%,
         rgba(255,255,255,0.07) 100%
     );
-    backdrop-filter: blur(20px) saturate(150%);
-    -webkit-backdrop-filter: blur(20px) saturate(150%);
+    backdrop-filter: blur(12px) saturate(130%);
+    -webkit-backdrop-filter: blur(12px) saturate(130%);
     border: 1px solid rgba(255,255,255,0.08);
     box-shadow: 0 1px 0 rgba(255,255,255,0.04) inset;
     transition: border-color 0.2s;

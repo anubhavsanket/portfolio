@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add((time) => lenis.raf(time * 1000));
+    gsap.ticker.lagSmoothing(0);
 
     // Hero name stagger — clean vertical slide, no rotation
     const heroName = document.getElementById('hero-name');
@@ -27,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const span = document.createElement('span');
                 span.className = 'char';
                 span.textContent = char;
+                span.setAttribute('aria-hidden', 'true');
                 heroName.appendChild(span);
             }
         }
@@ -96,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ───────────────────────────────────────────────
-    // Background Node Graph — quieted
+    // Background Node Graph — optimized
     // ───────────────────────────────────────────────
     const graphCanvas = document.getElementById('node-graph');
     if (graphCanvas && !prefersReducedMotion) {
@@ -106,7 +108,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const isMobile = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
         const NODE_COUNT = isMobile ? 30 : 90;
         const CONNECTION_DIST = 160;
+        const CONNECTION_DIST_SQ = CONNECTION_DIST * CONNECTION_DIST;
         const MOUSE_RADIUS = 120;
+        const MOUSE_RADIUS_SQ = MOUSE_RADIUS * MOUSE_RADIUS;
+        const MIN_FRAME_MS = 1000 / 120; // ~120 FPS cap
+
+        // Cached theme color — updated only on toggle, not per-frame
+        let cachedColor = getColor();
+        function getColor() {
+            const theme = document.body.getAttribute('data-theme');
+            if (theme === 'light') return { r: 29, g: 0, b: 255 };
+            return { r: 226, g: 255, b: 0 };
+        }
 
         const nodes = [];
 
@@ -134,18 +147,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        function getColor() {
-            const theme = document.body.getAttribute('data-theme');
-            if (theme === 'light') return { r: 29, g: 0, b: 255 };
-            return { r: 226, g: 255, b: 0 };
-        }
-
         function draw() {
             ctx.clearRect(0, 0, W, H);
             if (isMobile) return;
 
-            const col = getColor();
+            const col = cachedColor;
+            const colorStr = `${col.r},${col.g},${col.b}`;
 
+            // Update node positions
             for (const node of nodes) {
                 node.x += node.vx;
                 node.y += node.vy;
@@ -157,8 +166,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const dx = node.x - mouseX;
                 const dy = node.y - mouseY;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-                if (dist < MOUSE_RADIUS && dist > 0) {
+                const distSq = dx * dx + dy * dy;
+                if (distSq < MOUSE_RADIUS_SQ && distSq > 0) {
+                    const dist = Math.sqrt(distSq);
                     const force = (MOUSE_RADIUS - dist) / MOUSE_RADIUS * 0.8;
                     node.vx += (dx / dist) * force;
                     node.vy += (dy / dist) * force;
@@ -168,69 +178,124 @@ document.addEventListener('DOMContentLoaded', () => {
                 node.vy *= 0.99;
             }
 
-            // Draw connections
+            // Draw connections — batched into single path, distance-squared pre-filter
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(${colorStr},0.15)`;
+            ctx.lineWidth = 0.5;
+
             for (let i = 0; i < nodes.length; i++) {
                 for (let j = i + 1; j < nodes.length; j++) {
                     const dx = nodes[i].x - nodes[j].x;
                     const dy = nodes[i].y - nodes[j].y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    const distSq = dx * dx + dy * dy;
 
-                    if (dist < CONNECTION_DIST) {
-                        const alpha = (1 - dist / CONNECTION_DIST) * 0.25;
-                        ctx.beginPath();
+                    if (distSq < CONNECTION_DIST_SQ) {
                         ctx.moveTo(nodes[i].x, nodes[i].y);
                         ctx.lineTo(nodes[j].x, nodes[j].y);
-                        ctx.strokeStyle = `rgba(${col.r},${col.g},${col.b},${alpha})`;
-                        ctx.lineWidth = 0.5;
-                        ctx.stroke();
                     }
                 }
             }
+            ctx.stroke();
 
-            // Draw nodes
+            // Draw nodes — batched into two tiers (near-mouse and far) for fewer state changes
+            ctx.beginPath();
+            ctx.fillStyle = `rgba(${colorStr},0.25)`;
+            for (const node of nodes) {
+                ctx.moveTo(node.x + node.radius, node.y);
+                ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+            }
+            ctx.fill();
+
+            // Near-mouse nodes (highlighted tier)
+            ctx.beginPath();
+            ctx.fillStyle = `rgba(${colorStr},0.5)`;
+            let hasNear = false;
             for (const node of nodes) {
                 const dx = node.x - mouseX;
                 const dy = node.y - mouseY;
-                const distToMouse = Math.sqrt(dx * dx + dy * dy);
-                const nearMouse = distToMouse < MOUSE_RADIUS;
-
-                const alpha = nearMouse ? 0.5 : 0.25;
-                const radius = nearMouse ? node.radius * 1.5 : node.radius;
-
-                ctx.beginPath();
-                ctx.arc(node.x, node.y, radius, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(${col.r},${col.g},${col.b},${alpha})`;
-                ctx.fill();
-
-                if (nearMouse) {
-                    const glowAlpha = (1 - distToMouse / MOUSE_RADIUS) * 0.15;
-                    ctx.beginPath();
-                    ctx.arc(node.x, node.y, radius * 4, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(${col.r},${col.g},${col.b},${glowAlpha})`;
-                    ctx.fill();
+                const distSq = dx * dx + dy * dy;
+                if (distSq < MOUSE_RADIUS_SQ) {
+                    const radius = node.radius * 1.5;
+                    ctx.moveTo(node.x + radius, node.y);
+                    ctx.arc(node.x, node.y, radius, 0, Math.PI * 2);
+                    hasNear = true;
                 }
+            }
+            if (hasNear) ctx.fill();
+        }
+
+        // Frame-rate capped animation loop with IntersectionObserver pause
+        let rafId = null;
+        let lastFrameTime = 0;
+        let isRunning = false;
+
+        function animate(timestamp) {
+            if (!isRunning) return;
+            const elapsed = timestamp - lastFrameTime;
+            if (elapsed >= MIN_FRAME_MS) {
+                lastFrameTime = timestamp;
+                draw();
+            }
+            rafId = requestAnimationFrame(animate);
+        }
+
+        function startAnimation() {
+            if (isRunning || isMobile) return;
+            isRunning = true;
+            lastFrameTime = 0;
+            rafId = requestAnimationFrame(animate);
+        }
+
+        function stopAnimation() {
+            isRunning = false;
+            if (rafId) {
+                cancelAnimationFrame(rafId);
+                rafId = null;
             }
         }
 
-        function animate() {
-            draw();
-            requestAnimationFrame(animate);
+        // Pause canvas rendering when hero section scrolls out of view
+        const heroSection = document.querySelector('.hero');
+        if (heroSection && 'IntersectionObserver' in window) {
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) startAnimation();
+                    else stopAnimation();
+                });
+            }, { threshold: 0 });
+            io.observe(heroSection);
+        } else {
+            if (!isMobile) startAnimation();
         }
 
+        // Passive mouse listeners
         document.addEventListener('mousemove', (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY;
-        });
+        }, { passive: true });
 
         document.addEventListener('mouseleave', () => {
             mouseX = -1000;
             mouseY = -1000;
-        });
+        }, { passive: true });
+
+        // Debounced resize — prevents array reallocation thrashing
+        let resizeTimer = null;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => { resize(); createNodes(); }, 150);
+        }, { passive: true });
 
         resize();
         createNodes();
-        window.addEventListener('resize', () => { resize(); createNodes(); });
-        if (!isMobile) animate();
+
+        // Update cached color when theme toggles
+        const themeBtn = document.getElementById('theme-toggle');
+        if (themeBtn) {
+            themeBtn.addEventListener('click', () => {
+                setTimeout(() => { cachedColor = getColor(); }, 50);
+            });
+        }
     }
 
     // Year

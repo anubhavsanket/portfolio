@@ -3,12 +3,19 @@ const saved = localStorage.getItem('theme') || 'dark';
 document.body.setAttribute('data-theme', saved);
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Lenis
-    const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true });
+    // Reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Lenis — skip smooth scroll for reduced motion
+    const lenis = new Lenis({
+        duration: prefersReducedMotion ? 0 : 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: !prefersReducedMotion
+    });
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add((time) => lenis.raf(time * 1000));
 
-    // Hero name stagger
+    // Hero name stagger — clean vertical slide, no rotation
     const heroName = document.getElementById('hero-name');
     if (heroName && typeof anime !== 'undefined') {
         const text = heroName.textContent;
@@ -26,23 +33,33 @@ document.addEventListener('DOMContentLoaded', () => {
         const chars = heroName.querySelectorAll('.char');
         chars.forEach(c => { c.style.opacity = '0'; c.style.display = 'inline-block'; });
 
-        anime.timeline({ delay: 200 })
-            .add({ targets: chars, opacity: [0,1], translateY: [40,0], rotateX: [-30,0], duration: 900, easing: 'easeOutExpo', delay: anime.stagger(35) });
+        if (!prefersReducedMotion) {
+            anime.timeline({ delay: 200 })
+                .add({ targets: chars, opacity: [0,1], translateY: [30,0], duration: 800, easing: 'easeOutExpo', delay: anime.stagger(45) });
+        }
     }
 
     // Hero meta + footer fade in
-    if (typeof anime !== 'undefined') {
+    if (typeof anime !== 'undefined' && !prefersReducedMotion) {
         anime.timeline({ delay: 800 })
             .add({ targets: '.hero-meta', opacity: [0,1], translateY: [10,0], duration: 500, easing: 'easeOutCubic' })
+            .add({ targets: '.hero-subtitle', opacity: [0,1], translateY: [10,0], duration: 500, easing: 'easeOutCubic' }, '-=200')
             .add({ targets: '.hero-footer', opacity: [0,1], translateY: [15,0], duration: 600, easing: 'easeOutCubic' }, '-=200');
     }
-    ['.hero-meta', '.hero-footer'].forEach(s => { const el = document.querySelector(s); if (el) el.style.opacity = '0'; });
+    ['.hero-meta', '.hero-subtitle', '.hero-footer'].forEach(s => { const el = document.querySelector(s); if (el) el.style.opacity = '0'; });
 
     // Horizontal scroll for projects
     const track = document.querySelector('.work-track');
     const wrapper = document.querySelector('.work-track-wrapper');
     if (track && wrapper) {
-        const getScrollWidth = () => track.scrollWidth - wrapper.offsetWidth;
+        const getScrollWidth = () => {
+            const cards = track.querySelectorAll('.work-card');
+            const gap = 24; // matches CSS gap
+            const trackPadding = 40; // left padding
+            const cardWidth = cards[0].offsetWidth;
+            const totalContent = trackPadding + (cardWidth * cards.length) + (gap * (cards.length - 1));
+            return totalContent - wrapper.offsetWidth + 120;
+        };
         gsap.to(track, {
             x: () => -getScrollWidth(),
             ease: 'none',
@@ -58,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Scroll reveals
-    gsap.utils.toArray('.about, .stack, .archive, .footer').forEach(el => {
+    gsap.utils.toArray('.stack, .experience, .close').forEach(el => {
         gsap.fromTo(el, { opacity: 0, y: 40 }, {
             opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
             scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' }
@@ -72,11 +89,17 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('theme', next);
     });
 
+    // Header name → scroll to top
+    document.querySelector('.header-name')?.addEventListener('click', (e) => {
+        e.preventDefault();
+        lenis.scrollTo(0, { duration: 1.5 });
+    });
+
     // ───────────────────────────────────────────────
-    // Background Node Graph
+    // Background Node Graph — quieted
     // ───────────────────────────────────────────────
     const graphCanvas = document.getElementById('node-graph');
-    if (graphCanvas) {
+    if (graphCanvas && !prefersReducedMotion) {
         const ctx = graphCanvas.getContext('2d');
         let W, H;
         let mouseX = -1000, mouseY = -1000;
@@ -119,22 +142,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function draw() {
             ctx.clearRect(0, 0, W, H);
-            if (isMobile) return; // Static on mobile
+            if (isMobile) return;
 
             const col = getColor();
 
-            // Update positions
             for (const node of nodes) {
                 node.x += node.vx;
                 node.y += node.vy;
 
-                // Wrap around edges
                 if (node.x < -20) node.x = W + 20;
                 if (node.x > W + 20) node.x = -20;
                 if (node.y < -20) node.y = H + 20;
                 if (node.y > H + 20) node.y = -20;
 
-                // Mouse repulsion
                 const dx = node.x - mouseX;
                 const dy = node.y - mouseY;
                 const dist = Math.sqrt(dx * dx + dy * dy);
@@ -144,7 +164,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     node.vy += (dy / dist) * force;
                 }
 
-                // Damping
                 node.vx *= 0.99;
                 node.vy *= 0.99;
             }
@@ -170,7 +189,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Draw nodes
             for (const node of nodes) {
-                // Check if near mouse for glow
                 const dx = node.x - mouseX;
                 const dy = node.y - mouseY;
                 const distToMouse = Math.sqrt(dx * dx + dy * dy);
@@ -184,7 +202,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 ctx.fillStyle = `rgba(${col.r},${col.g},${col.b},${alpha})`;
                 ctx.fill();
 
-                // Glow for mouse-near nodes
                 if (nearMouse) {
                     const glowAlpha = (1 - distToMouse / MOUSE_RADIUS) * 0.15;
                     ctx.beginPath();
@@ -200,7 +217,6 @@ document.addEventListener('DOMContentLoaded', () => {
             requestAnimationFrame(animate);
         }
 
-        // Mouse tracking
         document.addEventListener('mousemove', (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY;

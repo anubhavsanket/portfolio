@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anubhav Sanket — ML Engineer</title>
-    <meta name="description" content="ML Engineer specializing in GenAI and multimodal AI. Built Viral Clipper, ranked Top 3.5% on Kaggle.">
-    <meta property="og:title" content="Anubhav Sanket - ML Engineer">
+    <title>Anubhav Sanket Portfolio</title>
+    <meta name="description" content="Full Stack AI Engineer building end-to-end AI products — from local LLM inference and RAG pipelines to deployed full-stack applications.">
+    <meta property="og:title" content="Anubhav Sanket Portfolio">
     <meta property="og:image" content="https://anubhavsanket.github.io/portfolio/favicon/android-chrome-512x512.png">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="favicon/favicon.ico" sizes="any">
@@ -14,21 +14,17 @@
     <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Background node graph -->
     <canvas id="node-graph"></canvas>
-    <!-- Grain overlay -->
     <div class="grain"></div>
 
-    <!-- Header -->
     <header class="header">
-        <span class="header-name">Anubhav Sanket</span>
+        <a href="#" class="header-name">Anubhav Sanket</a>
         <nav class="header-nav">
+            <a href="#stack">Stack</a>
             <a href="#work">Work</a>
-            <a href="#about">About</a>
-            <a href="mailto:anubhavsanket22@gmail.com">Contact</a>
         </nav>
         <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
             <svg class="sun-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
@@ -36,99 +32,169 @@
         </button>
     </header>
 
-    <!-- HERO — Name IS the design -->
+    <!-- 1. HERO -->
     <section class="hero">
         <div class="hero-inner">
             <h1 class="hero-name" id="hero-name">Anubhav Sanket</h1>
             <div class="hero-meta">
-                <span class="hero-tag">ML Engineer · GenAI</span>
+                <span class="hero-tag">Full Stack AI Engineer</span>
                 <span class="hero-dot"></span>
                 <span class="hero-location">Bengaluru, India</span>
             </div>
+            <p class="hero-subtitle">Building AI products end-to-end — from local inference to deployed full-stack apps.</p>
         </div>
         <div class="hero-footer">
-            <p class="hero-bio">I build offline-first AI systems — LLMs, multimodal pipelines, and CUDA-accelerated tools that ship.</p>
-            <a href="assets/resume.pdf" download class="hero-cta">Résumé ↗</a>
-        </div>
-    </section>
-
-    <!-- ABOUT — Compact, inline -->
-    <section class="about" id="about">
-        <div class="about-grid">
-            <div class="about-label">
-                <span class="label">About</span>
+            <div class="hero-footer-left">
+                <p class="hero-bio">Let's get in touch!</p>
+                <div class="hero-social">
+                    <a href="mailto:anubhavsanket22@gmail.com" aria-label="Email">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    </a>
+                    <a href="https://github.com/anubhavsanket" target="_blank" aria-label="GitHub">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                    </a>
+                    <a href="https://linkedin.com/in/anubhavsanket" target="_blank" aria-label="LinkedIn">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    </a>
+                    <a href="https://kaggle.com/anubhavsanket" target="_blank" aria-label="Kaggle" class="footer-icon-link">
+                        <span class="kaggle-k">k</span>
+                    </a>
+                </div>
             </div>
-            <div class="about-content">
-                <p class="about-lead">ML Engineer building privacy-first AI systems in Bangalore. Recently shipped Viral Clipper (local video AI using Gemma 3 + WhisperX), placed Top 3.5% globally on Kaggle, and built dashboards tracking ₹124.6M in transactions at Oaz Shakti.</p>
-                <div class="about-metrics">
-                    <div class="metric">
-                        <span class="metric-value">Top 3.5%</span>
-                        <span class="metric-label">Kaggle · 158/4,506</span>
-                    </div>
-                    <div class="metric">
-                        <span class="metric-value">₹124.6M</span>
-                        <span class="metric-label">Transactions tracked</span>
-                    </div>
-                    <div class="metric">
-                        <span class="metric-value">30%</span>
-                        <span class="metric-label">Faster page loads</span>
-                    </div>
-                </div>
-                <p class="about-detail">B.E. in AI/ML from Dayananda Sagar Academy (2024). Certifications in Azure Data Engineering, Power BI, and Cyber Security. Looking for ML Engineer / GenAI Engineer roles.</p>
-                <div class="about-links">
-                    <a href="https://github.com/anubhavsanket" target="_blank">GitHub ↗</a>
-                    <a href="https://linkedin.com/in/anubhavsanket" target="_blank">LinkedIn ↗</a>
-                    <a href="https://kaggle.com/anubhavsanket" target="_blank">Kaggle ↗</a>
-                    <a href="mailto:anubhavsanket22@gmail.com">Email ↗</a>
-                </div>
+            <div class="hero-footer-right">
+                <span class="hero-download-text">Wanna know more? Download..</span>
+                <a href="assets/resume.pdf" download class="hero-cta">Résumé ↗</a>
             </div>
         </div>
     </section>
 
-    <!-- WORK — Horizontal scroll showcase -->
+    <!-- 2. STACK -->
+    <section class="stack" id="stack">
+        <span class="label">Stack</span>
+        <div class="stack-grid">
+            <div class="stack-category">
+                <span class="stack-cat">AI / ML</span>
+                <span class="stack-val">LLMs, RAG, Agentic AI, LangGraph, Embeddings, Vector Search, Ollama, ChromaDB, PyTorch, Transformers, scikit-learn, WhisperX, NLP, Computer Vision</span>
+            </div>
+            <div class="stack-category">
+                <span class="stack-cat">Infrastructure</span>
+                <span class="stack-val">Docker, CUDA, NVIDIA GPU Inference, NVENC, Git, GitHub</span>
+            </div>
+            <div class="stack-category">
+                <span class="stack-cat">Backend</span>
+                <span class="stack-val">Python, FastAPI, REST APIs, PostgreSQL, MongoDB, Redis, SQL</span>
+            </div>
+            <div class="stack-category">
+                <span class="stack-cat">Frontend</span>
+                <span class="stack-val">React, TypeScript, PyQt6, Tauri, Gradio, Vite, Tailwind CSS</span>
+            </div>
+            <div class="stack-category">
+                <span class="stack-cat">Data / Analytics</span>
+                <span class="stack-val">Power BI, DAX, Pandas, NumPy, FFmpeg, Portfolio Optimization</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. EXPERIENCE -->
+    <section class="experience" id="experience">
+        <span class="label">Experience</span>
+        <div class="experience-grid">
+            <div class="experience-entry">
+                <span class="experience-role">ML / Power BI Intern</span>
+                <span class="experience-company">Oaz Shakti · Nov 2025 — Mar 2026 · Remote</span>
+                <p class="experience-desc">Built analytics dashboard over 24K+ transactions worth ₹124.6M, tracking gross profit of ₹23.49M at 18.9% margin. Identified ₹8.4M in overdue payments through receivables analysis.</p>
+            </div>
+            <div class="experience-entry">
+                <span class="experience-role">Full-Stack Developer</span>
+                <span class="experience-company">Varcons Technologies · Aug 2023 — Oct 2023 · Bengaluru</span>
+                <p class="experience-desc">Built and shipped a responsive React + MongoDB website with car-availability tracking, appointment scheduling, and real-time CRUD. Improved page-load performance by 30%.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. WORK — Horizontal scroll showcase -->
     <section class="work" id="work">
         <div class="work-header">
-            <span class="label">Selected Work</span>
+            <span class="label">Featured Works</span>
         </div>
         <div class="work-track-wrapper">
             <div class="work-track">
-                <!-- Project 1 -->
                 <article class="work-card" data-category="genai">
                     <div class="work-card-bg"></div>
                     <div class="work-card-content">
+                        <div class="work-card-visual">
+                            <div class="work-screenshot" aria-hidden="true">
+                                <div class="screenshot-bar"><span></span><span></span><span></span></div>
+                                <pre class="screenshot-code"><code><span class="sc-comment"># wayfarer</span>
+<span class="sc-fn">match</span>(resume, jd)
+  → fit <span class="sc-num">87%</span>, verified strengths + gaps</code></pre>
+                            </div>
+                        </div>
                         <span class="work-tag">GENAI</span>
-                        <h2 class="work-title">Viral Clipper</h2>
-                        <p class="work-desc">Autonomous video processing pipeline. Gemma 3 via Ollama + WhisperX identify and clip viral moments from long-form content. Replaces $360/yr cloud tools with zero recurring cost.</p>
+                        <h2 class="work-title">Wayfarer</h2>
+                        <p class="work-desc">AI-driven job search platform. RAG pipeline with multi-provider LLM routing (NVIDIA NIM, OpenRouter, Ollama). ATS resume checker with confidence-tiered redlines, job matcher with live posting ranking.</p>
                         <div class="work-tech">
-                            <span>Ollama</span><span>Gemma 3</span><span>WhisperX</span><span>PyQt6</span><span>FFmpeg</span><span>CUDA</span>
+                            <span>Ollama</span><span>NVIDIA NIM</span><span>Redis</span><span>ChromaDB</span><span>FastAPI</span><span>React</span>
+                        </div>
+                        <a href="https://github.com/anubhavsanket/wayfarer" target="_blank" class="work-link">View Project ↗</a>
+                    </div>
+                </article>
+                <article class="work-card" data-category="rag">
+                    <div class="work-card-bg"></div>
+                    <div class="work-card-content">
+                        <div class="work-card-visual">
+                            <div class="work-screenshot" aria-hidden="true">
+                                <div class="screenshot-bar"><span></span><span></span><span></span></div>
+                                <pre class="screenshot-code"><code><span class="sc-comment"># localbrainnotes</span>
+<span class="sc-fn">query</span>(<span class="sc-str">"What did I learn about X?"</span>)
+  → <span class="sc-num">3</span> sources, grounded + reflected</code></pre>
+                            </div>
+                        </div>
+                        <span class="work-tag">RAG</span>
+                        <h2 class="work-title">LocalBrainNotes</h2>
+                        <p class="work-desc">Local-first, Obsidian-compatible agentic RAG assistant. LangGraph agent loop (router → retrieve → grade → rewrite → generate → reflect) over unified ChromaDB vector store.</p>
+                        <div class="work-tech">
+                            <span>LangGraph</span><span>ChromaDB</span><span>Ollama</span><span>FastAPI</span><span>Markdown</span>
+                        </div>
+                        <a href="https://github.com/anubhavsanket/localbrainnotes" target="_blank" class="work-link">View Project ↗</a>
+                    </div>
+                </article>
+                <article class="work-card" data-category="media">
+                    <div class="work-card-bg"></div>
+                    <div class="work-card-content">
+                        <div class="work-card-visual">
+                            <div class="work-screenshot" aria-hidden="true">
+                                <div class="screenshot-bar"><span></span><span></span><span></span></div>
+                                <pre class="screenshot-code"><code><span class="sc-comment"># viral-clipper</span>
+<span class="sc-fn">clip</span>(source=<span class="sc-str">"podcast_3hr.mp4"</span>)
+  → <span class="sc-num">14</span> clips, <span class="sc-num">2.3s</span> avg processing</code></pre>
+                            </div>
+                        </div>
+                        <span class="work-tag">MEDIA</span>
+                        <h2 class="work-title">Viral Clipper</h2>
+                        <p class="work-desc">Local OpusClip alternative. 100% offline video automation — faster-whisper for transcription, Ollama LLMs for virality scoring, sentence-transformers for deduplication. Hormozi-style animated captions.</p>
+                        <div class="work-tech">
+                            <span>Ollama</span><span>Gemma</span><span>faster-whisper</span><span>CUDA</span><span>FFmpeg</span><span>PyQt6</span>
                         </div>
                         <a href="https://github.com/anubhavsanket/viral-clipper" target="_blank" class="work-link">View Project ↗</a>
                     </div>
                 </article>
-
-                <!-- Project 2 -->
-                <article class="work-card" data-category="media">
-                    <div class="work-card-bg"></div>
-                    <div class="work-card-content">
-                        <span class="work-tag">MEDIA</span>
-                        <h2 class="work-title">WhisperBurn</h2>
-                        <p class="work-desc">Professional subtitle intelligence. Word-level precision, 100+ languages, CUDA-accelerated transcription and burning.</p>
-                        <div class="work-tech">
-                            <span>WhisperX</span><span>PyTorch</span><span>CUDA</span><span>FFmpeg</span>
-                        </div>
-                        <a href="https://github.com/anubhavsanket/WhisperBurn" target="_blank" class="work-link">View Project ↗</a>
-                    </div>
-                </article>
-
-                <!-- Project 3 -->
                 <article class="work-card" data-category="quant">
                     <div class="work-card-bg"></div>
                     <div class="work-card-content">
+                        <div class="work-card-visual">
+                            <div class="work-screenshot" aria-hidden="true">
+                                <div class="screenshot-bar"><span></span><span></span><span></span></div>
+                                <pre class="screenshot-code"><code><span class="sc-comment"># hull-tactical</span>
+<span class="sc-fn">predict</span>(returns, constraints)
+  → rank <span class="sc-num">#158</span> / <span class="sc-num">4,000+</span> (<span class="sc-num">Top 3.5%</span>)</code></pre>
+                            </div>
+                        </div>
                         <span class="work-tag">QUANT</span>
                         <h2 class="work-title">Hull Tactical</h2>
-                        <p class="work-desc">Market return prediction. Kaggle Rank 158/4,506 (Top 3.5%). Quant optimization of modified Sharpe ratio under leverage and risk constraints.</p>
+                        <p class="work-desc">Kaggle Hull Tactical Asset Allocation Competition. Rank 158/4,000+ (Top 3.5%). Quant optimization of modified Sharpe ratio under leverage and risk constraints.</p>
                         <div class="work-tech">
-                            <span>Python</span><span>NumPy</span><span>Pandas</span><span>SciPy</span><span>Polars</span>
+                            <span>XGBoost</span><span>scikit-learn</span><span>NumPy</span><span>Pandas</span><span>Polars</span>
                         </div>
                         <a href="https://github.com/anubhavsanket/Hull-Tactical-Kaggle-Competition" target="_blank" class="work-link">View Project ↗</a>
                     </div>
@@ -137,70 +203,10 @@
         </div>
     </section>
 
-    <!-- STACK -->
-    <section class="stack">
-        <div class="stack-grid">
-            <div class="stack-col">
-                <span class="label">Stack</span>
-                <div class="stack-items">
-                    <div class="stack-group">
-                        <span class="stack-cat">GenAI</span>
-                        <span class="stack-val">Ollama, Gemma 3, Llama, RAG</span>
-                    </div>
-                    <div class="stack-group">
-                        <span class="stack-cat">Multimodal</span>
-                        <span class="stack-val">WhisperX, PyTorch, TensorFlow, OpenCV</span>
-                    </div>
-                    <div class="stack-group">
-                        <span class="stack-cat">Video / Audio</span>
-                        <span class="stack-val">FFmpeg, NVENC, Mediapipe</span>
-                    </div>
-                    <div class="stack-group">
-                        <span class="stack-cat">Data</span>
-                        <span class="stack-val">Power BI, Pandas, SQL, PostgreSQL</span>
-                    </div>
-                </div>
-            </div>
-            <div class="stack-col">
-                <span class="label">Experience</span>
-                <div class="stack-items">
-                    <div class="stack-group">
-                        <span class="stack-cat">Oaz Shakti — ML / Power BI Intern (2025)</span>
-                        <span class="stack-val">Dashboards on 24K+ transactions. Surfaced ₹8.4M overdue payments.</span>
-                    </div>
-                    <div class="stack-group">
-                        <span class="stack-cat">Varcons — Full-Stack Dev (2023)</span>
-                        <span class="stack-val">E-commerce site (React + MongoDB). 30% faster page loads.</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- 5. CLOSE -->
+    <section class="close">
+        <p class="close-text">Always building. Always learning.</p>
     </section>
-
-    <!-- ARCHIVE -->
-    <section class="archive">
-        <span class="label">Archive</span>
-        <ul class="archive-list">
-            <li><span>Fake News Detection</span><a href="https://github.com/anubhavsanket/Fake-News-Detection-App" target="_blank">NLP / ML ↗</a></li>
-            <li><span>Real-time Attendance</span><a href="https://github.com/anubhavsanket/Real-time-attendance-system" target="_blank">CV / Python ↗</a></li>
-            <li><span>Customer Segmentation</span><a href="https://github.com/anubhavsanket/CustomerSegmentation" target="_blank">K-Means ↗</a></li>
-            <li><span>Stock Predictor</span><a href="https://github.com/anubhavsanket/Stock-Predictor" target="_blank">Forecasting ↗</a></li>
-        </ul>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="footer-content">
-            <p class="footer-cta">Let's build something together.</p>
-            <a href="mailto:anubhavsanket22@gmail.com" class="footer-email">anubhavsanket22@gmail.com</a>
-            <div class="footer-links">
-                <a href="https://github.com/anubhavsanket" target="_blank">GitHub</a>
-                <a href="https://linkedin.com/in/anubhavsanket" target="_blank">LinkedIn</a>
-                <a href="https://kaggle.com/anubhavsanket" target="_blank">Kaggle</a>
-            </div>
-            <p class="footer-copy">© <span id="current-year">2026</span> Anubhav Sanket</p>
-        </div>
-    </footer>
 
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js" crossorigin="anonymous"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous"></script>

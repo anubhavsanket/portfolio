@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const trackPadding = 40; // left padding
             const cardWidth = cards[0].offsetWidth;
             const totalContent = trackPadding + (cardWidth * cards.length) + (gap * (cards.length - 1));
-            return totalContent - wrapper.offsetWidth + 120;
+            return totalContent - wrapper.offsetWidth + 40;
         };
         gsap.to(track, {
             x: () => -getScrollWidth(),

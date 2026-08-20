@@ -463,8 +463,7 @@ body[data-theme="light"] .hero-footer::before {
 }
 
 .work-card {
-    width: 80vw;
-    max-width: 900px;
+    width: clamp(320px, 40vw, 1100px);
     min-height: 500px;
     border-radius: 20px;
     position: relative;

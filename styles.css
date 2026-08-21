@@ -247,11 +247,14 @@ body[data-theme="light"] .moon-icon { display: none; }
    ============================================ */
 .label {
     font-family: var(--mono);
-    font-size: 11px;
+    font-size: 13px;
     font-weight: 600;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--accent);
+    display: block;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
 }
 
 /* ============================================
@@ -469,7 +472,7 @@ body[data-theme="light"] .hero-footer::before {
 
 .work-header {
     padding: 0 40px;
-    margin-bottom: 40px;
+    margin-bottom: 28px;
 }
 
 .work-track-wrapper {
@@ -686,8 +689,7 @@ body[data-theme="light"] .work-tech span {
 }
 
 .stack > .label {
-    display: block;
-    margin-bottom: 32px;
+    margin-bottom: 20px;
 }
 
 .stack-grid {
@@ -754,8 +756,7 @@ body[data-theme="light"] .work-tech span {
 }
 
 .experience > .label {
-    display: block;
-    margin-bottom: 32px;
+    margin-bottom: 20px;
 }
 
 .experience-grid {

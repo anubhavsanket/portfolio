@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://anubhavsanket.github.io/portfolio/sitemap.xml

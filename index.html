@@ -5,20 +5,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anubhav Sanket Portfolio</title>
     <meta name="description" content="Full Stack AI Engineer building end-to-end AI products — from local LLM inference and RAG pipelines to deployed full-stack applications.">
-    <meta property="og:title" content="Anubhav Sanket Portfolio">
-    <meta property="og:image" content="https://anubhavsanket.github.io/portfolio/favicon/android-chrome-512x512.png">
+    <meta name="theme-color" content="#0a0a0a" id="theme-color-meta">
+    <link rel="canonical" href="https://anubhavsanket.github.io/portfolio/">
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://anubhavsanket.github.io/portfolio/">
+    <meta property="og:title" content="Anubhav Sanket — Full Stack AI Engineer">
+    <meta property="og:description" content="Full Stack AI Engineer building end-to-end AI products — from local LLM inference and RAG pipelines to deployed full-stack applications.">
+    <meta property="og:image" content="https://anubhavsanket.github.io/portfolio/favicon/android-chrome-192x192.png">
+    <meta property="og:locale" content="en_IN">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Anubhav Sanket — Full Stack AI Engineer">
+    <meta name="twitter:description" content="Full Stack AI Engineer building end-to-end AI products — from local LLM inference and RAG pipelines to deployed full-stack applications.">
+    <meta name="twitter:image" content="https://anubhavsanket.github.io/portfolio/favicon/android-chrome-192x192.png">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Anubhav Sanket",
+        "url": "https://anubhavsanket.github.io/portfolio/",
+        "jobTitle": "Full Stack AI Engineer",
+        "description": "Full Stack AI Engineer building end-to-end AI products — from local LLM inference and RAG pipelines to deployed full-stack applications.",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Bengaluru",
+            "addressCountry": "IN"
+        },
+        "sameAs": [
+            "https://github.com/anubhavsanket",
+            "https://linkedin.com/in/anubhavsanket",
+            "https://kaggle.com/anubhavsanket"
+        ],
+        "knowsAbout": [
+            "Artificial Intelligence",
+            "Machine Learning",
+            "Full Stack Development",
+            "RAG Pipelines",
+            "LLMs",
+            "Python",
+            "FastAPI",
+            "React",
+            "TypeScript"
+        ]
+    }
+    </script>
+    <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/spacegrotesk/v22/V8mQoQDjQSkFtoMM3T6r8E7mF71Q-gOoraIAEj4PVnskPMA.woff2" crossorigin>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="favicon/favicon.ico" sizes="any">
     <link rel="apple-touch-icon" href="favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
     <link rel="manifest" href="favicon/site.webmanifest">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=DM+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
     <canvas id="node-graph"></canvas>
     <div class="grain"></div>
 
@@ -28,13 +69,14 @@
             <a href="#stack">Stack</a>
             <a href="#work">Work</a>
         </nav>
-        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" aria-pressed="true">
             <svg class="sun-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
             <svg class="moon-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         </button>
     </header>
 
     <!-- 1. HERO -->
+    <main id="main-content">
     <section class="hero">
         <div class="hero-inner">
             <h1 class="hero-name" id="hero-name" aria-label="Anubhav Sanket">Anubhav Sanket</h1>
@@ -58,7 +100,7 @@
                     <a href="https://linkedin.com/in/anubhavsanket" target="_blank" aria-label="LinkedIn">
                         <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                     </a>
-                    <a href="https://kaggle.com/anubhavsanket" target="_blank" aria-label="Kaggle" class="footer-icon-link">
+                    <a href="https://kaggle.com/anubhavsanket" target="_blank" aria-label="Kaggle">
                         <span class="kaggle-k">k</span>
                     </a>
                 </div>
@@ -72,7 +114,7 @@
 
     <!-- 2. STACK -->
     <section class="stack" id="stack">
-        <span class="label">Stack</span>
+        <h2 class="label">Stack</h2>
         <div class="stack-grid">
             <div class="stack-category">
                 <span class="stack-cat">AI / ML</span>
@@ -99,7 +141,7 @@
 
     <!-- 3. EXPERIENCE -->
     <section class="experience" id="experience">
-        <span class="label">Experience</span>
+        <h2 class="label">Experience</h2>
         <div class="experience-grid">
             <div class="experience-entry">
                 <span class="experience-role">ML / Power BI Intern</span>
@@ -117,7 +159,7 @@
     <!-- 4. WORK — Horizontal scroll showcase -->
     <section class="work" id="work">
         <div class="work-header">
-            <span class="label">Featured Works</span>
+            <h2 class="label">Featured Works</h2>
         </div>
         <div class="work-track-wrapper">
             <div class="work-track">
@@ -209,6 +251,7 @@
     <section class="close">
         <p class="close-text">Always building. Always learning.</p>
     </section>
+    </main>
 
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js" crossorigin="anonymous"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous"></script>

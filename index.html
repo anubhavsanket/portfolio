@@ -49,6 +49,18 @@
     }
     </script>
     <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/spacegrotesk/v22/V8mQoQDjQSkFtoMM3T6r8E7mF71Q-gOoraIAEj4PVnskPMA.woff2" crossorigin>
+    <script>
+        (function() {
+            try {
+                const saved = localStorage.getItem('theme') || 'dark';
+                document.body.setAttribute('data-theme', saved);
+                const themeColorMeta = document.getElementById('theme-color-meta');
+                if (themeColorMeta) {
+                    themeColorMeta.setAttribute('content', saved === 'light' ? '#f5f5f5' : '#0a0a0a');
+                }
+            } catch(e) {}
+        })();
+    </script>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="favicon/favicon.ico" sizes="any">
     <link rel="apple-touch-icon" href="favicon/apple-touch-icon.png">
@@ -86,7 +98,7 @@
                 <span class="hero-dot"></span>
                 <span class="hero-location">Bengaluru, India</span>
             </div>
-            <p class="hero-subtitle">Building AI products end-to-end — from local inference to deployed full-stack apps.</p>
+            <p class="hero-subtitle">Building AI products end-to-end, from local inference to deployed full-stack apps.</p>
         </div>
         <div class="hero-footer">
             <div class="hero-footer-left">
@@ -218,7 +230,7 @@
                         </div>
                         <span class="work-tag">MEDIA</span>
                         <h2 class="work-title">Viral Clipper</h2>
-                        <p class="work-desc">Local OpusClip alternative. 100% offline video automation — faster-whisper for transcription, Ollama LLMs for virality scoring, sentence-transformers for deduplication. Hormozi-style animated captions.</p>
+                        <p class="work-desc">Local OpusClip alternative. 100% offline video automation; faster-whisper for transcription, Ollama LLMs for virality scoring, sentence-transformers for deduplication. Hormozi-style animated captions.</p>
                         <div class="work-tech">
                             <span>Ollama</span><span>Gemma</span><span>faster-whisper</span><span>CUDA</span><span>FFmpeg</span><span>PyQt6</span>
                         </div>
@@ -254,7 +266,7 @@
             <div class="schedule-header-left">
                 <h2 class="label">Quick call? Schedule one!</h2>
                 <!-- <h3 class="schedule-heading">Got 15 minutes?</h3> -->
-                <p class="schedule-sub">No slides. No pitch. Just a quick intro call — tell me what you're working on.</p>
+                <p class="schedule-sub">No slides. No pitch. Just a quick intro call - tell me what you're working on.</p>
             </div>
             <div class="schedule-pills">
                 <span class="schedule-pill">

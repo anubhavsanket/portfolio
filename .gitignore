@@ -1,0 +1,23 @@
+# ZCode / agent tooling
+.zcode/
+.zcodeignore
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Editor folders
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Build tools / temp
+node_modules/
+dist/
+build/
+
+# Environment
+.env
+.env.local

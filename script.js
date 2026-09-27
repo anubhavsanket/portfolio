@@ -86,23 +86,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
         recomputeScrollDistance();
 
-        gsap.to(track, {
-            x: () => -scrollDistance,
-            ease: 'none',
-            scrollTrigger: {
-                trigger: '.work',
-                start: 'top top',
-                end: () => '+=' + scrollDistance,
-                pin: true,
-                scrub: 1,
-                invalidateOnRefresh: true,
-                onRefresh: recomputeScrollDistance,
-                onEnter: () => track.style.willChange = 'transform',
-                onLeave: () => track.style.willChange = 'auto',
-                onEnterBack: () => track.style.willChange = 'transform',
-                onLeaveBack: () => track.style.willChange = 'auto',
-            }
-        });
+        if (typeof gsap !== 'undefined') {
+            gsap.to(track, {
+                x: () => -scrollDistance,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: '.work',
+                    start: 'top top',
+                    end: () => '+=' + scrollDistance,
+                    pin: true,
+                    scrub: 1,
+                    invalidateOnRefresh: true,
+                    onRefresh: recomputeScrollDistance,
+                    onEnter: () => track.style.willChange = 'transform',
+                    onLeave: () => track.style.willChange = 'auto',
+                    onEnterBack: () => track.style.willChange = 'transform',
+                    onLeaveBack: () => track.style.willChange = 'auto',
+                }
+            });
+        }
     }
 
     // ───────────────────────────────────────────────
@@ -136,40 +138,44 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     })(window, 'https://app.cal.com/embed/embed.js', 'init');
 
-    Cal('init', 'quick-call', { origin: 'https://cal.com' });
+    if (typeof Cal !== 'undefined') {
+        Cal('init', 'quick-call', { origin: 'https://cal.com' });
 
-    // Initialize embed once
-    Cal.ns['quick-call']('inline', {
-        elementOrSelector: '#cal-embed',
-        calLink: 'anubhavsanket/15min',
-        layout: 'month_view',
-        config: { theme: saved }
-    });
-
-    // Theme-aware Cal UI — updates via postMessage
-    function applyCalTheme(theme) {
-        console.log('Updating Cal theme to:', theme);
-        
-        Cal.ns['quick-call']('ui', {
-            theme: theme,
-            cssVarsPerTheme: {
-                light: { 'cal-brand': '#1d00ff' },
-                dark:  { 'cal-brand': '#E2FF00' }
-            }
+        // Initialize embed once
+        Cal.ns['quick-call']('inline', {
+            elementOrSelector: '#cal-embed',
+            calLink: 'anubhavsanket/15min',
+            layout: 'month_view',
+            config: { theme: saved }
         });
-    }
 
-    // Apply UI settings immediately after inline call
-    applyCalTheme(saved);
+        // Theme-aware Cal UI — updates via postMessage
+        function applyCalTheme(theme) {
+            console.log('Updating Cal theme to:', theme);
+            
+            Cal.ns['quick-call']('ui', {
+                theme: theme,
+                cssVarsPerTheme: {
+                    light: { 'cal-brand': '#1d00ff' },
+                    dark:  { 'cal-brand': '#E2FF00' }
+                }
+            });
+        }
+
+        // Apply UI settings immediately after inline call
+        applyCalTheme(saved);
+    }
 
     // Scroll reveals
     // ───────────────────────────────────────────────
-    gsap.utils.toArray('.stack, .experience, .schedule, .close').forEach(el => {
-        gsap.fromTo(el, { opacity: 0, y: 40 }, {
-            opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
-            scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' }
+    if (typeof gsap !== 'undefined') {
+        gsap.utils.toArray('.stack, .experience, .schedule, .close').forEach(el => {
+            gsap.fromTo(el, { opacity: 0, y: 40 }, {
+                opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
+                scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' }
+            });
         });
-    });
+    }
 
     // ───────────────────────────────────────────────
     // Theme toggle — single listener, dispatches CustomEvent

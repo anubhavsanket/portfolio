@@ -970,13 +970,10 @@ body[data-theme="light"] .work-tech span {
    CAL.COM EMBED — Theme sync fallback
    ============================================ */
 #cal-embed {
+    background: transparent !important;
     transition: background-color 0.4s ease;
 }
 
-body[data-theme="light"] #cal-embed {
-    background: #ffffff;
-}
-
-body[data-theme="dark"] #cal-embed {
-    background: #0a0a0a;
+#cal-embed iframe {
+    background: transparent !important;
 }

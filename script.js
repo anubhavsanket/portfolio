@@ -137,30 +137,30 @@ document.addEventListener('DOMContentLoaded', () => {
     })(window, 'https://app.cal.com/embed/embed.js', 'init');
 
     Cal('init', 'quick-call', { origin: 'https://cal.com' });
-    
-    // Theme-aware Cal UI — re-renders embed on themechange
-    function renderCal(theme) {
-        const calTheme = theme === 'light' ? 'light' : 'dark';
-        console.log('Rendering Cal with theme:', calTheme);
+
+    // Initialize embed once
+    Cal.ns['quick-call']('inline', {
+        elementOrSelector: '#cal-embed',
+        calLink: 'anubhavsanket/15min',
+        layout: 'month_view',
+        config: { theme: saved }
+    });
+
+    // Theme-aware Cal UI — updates via postMessage
+    function applyCalTheme(theme) {
+        console.log('Updating Cal theme to:', theme);
         
-        // Clear existing embed
-        const container = document.getElementById('cal-embed');
-        if (container) container.innerHTML = '';
-        
-        // Re-initialize with new theme
-        Cal.ns['quick-call']('inline', {
-            elementOrSelector: '#cal-embed',
-            calLink: 'anubhavsanket/15min',
-            layout: 'month_view',
-            config: { theme: calTheme }
+        Cal.ns['quick-call']('ui', {
+            theme: theme,
+            cssVarsPerTheme: {
+                light: { 'cal-brand': '#1d00ff' },
+                dark:  { 'cal-brand': '#E2FF00' }
+            }
         });
-        
-        // Ensure UI also knows about the theme
-        Cal.ns['quick-call']('ui', { theme: calTheme });
     }
 
-    // Initial render
-    renderCal(saved);
+    // Apply UI settings immediately after inline call
+    applyCalTheme(saved);
 
     // Scroll reveals
     // ───────────────────────────────────────────────
@@ -195,7 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
         themeBtn.setAttribute('aria-pressed', next === 'dark');
         updateThemeColor(next);
         document.body.dispatchEvent(new CustomEvent('themechange', { detail: { theme: next } }));
-        renderCal(next);
+        applyCalTheme(next);
     });
 
     // ───────────────────────────────────────────────

@@ -350,19 +350,20 @@ body[data-theme="light"] .schedule-pill {
     color: var(--accent);
 }
 
-.schedule-embed-wrapper {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    overflow: hidden;
-    min-height: 600px; /* Pre-allocate space */
-}
+    .schedule-embed-wrapper {
+        background: transparent;
+        border: none;
+        border-radius: 0;
+        overflow: hidden;
+        height: 600px;
+    }
 
-/* Light mode wrapper adjust */
-body[data-theme="light"] .schedule-embed-wrapper {
-    background: #ffffff;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.04);
-}
+    /* Light mode wrapper adjust */
+    body[data-theme="light"] .schedule-embed-wrapper {
+        background: transparent;
+        box-shadow: none;
+    }
+
 /* ============================================
    NODE GRAPH — Background visualization
    ============================================ */

@@ -106,9 +106,62 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ───────────────────────────────────────────────
+    // ───────────────────────────────────────────────
+    // Cal.com inline embed
+    // ───────────────────────────────────────────────
+    (function (C, A, L) {
+        let p = function (a, ar) { a.q.push(ar); };
+        let d = C.document;
+        C.Cal = C.Cal || function () {
+            let cal = C.Cal;
+            let ar = arguments;
+            if (!cal.loaded) {
+                cal.ns = {};
+                cal.q = cal.q || [];
+                d.head.appendChild(d.createElement('script')).src = A;
+                cal.loaded = true;
+            }
+            if (ar[0] === L) {
+                const api = function () { p(api, arguments); };
+                const namespace = ar[1];
+                api.q = api.q || [];
+                if (typeof namespace === 'string') {
+                    cal.ns[namespace] = cal.ns[namespace] || api;
+                    p(cal.ns[namespace], ar);
+                    p(cal, ['-', ar]);
+                } else { p(cal, ar); }
+                return;
+            }
+            p(cal, ar);
+        };
+    })(window, 'https://app.cal.com/embed/embed.js', 'init');
+
+    Cal('init', 'quick-call', { origin: 'https://cal.com' });
+    
+    // Theme-aware Cal UI — re-renders embed on themechange
+    function renderCal(theme) {
+        const calTheme = theme === 'light' ? 'light' : 'dark';
+        console.log('Rendering Cal with theme:', calTheme);
+        
+        // Clear existing embed
+        const container = document.getElementById('cal-embed');
+        if (container) container.innerHTML = '';
+        
+        // Re-initialize with new theme
+        Cal.ns['quick-call']('inline', {
+            elementOrSelector: '#cal-embed',
+            calLink: 'anubhavsanket/15min',
+            layout: 'month_view',
+            config: { theme: calTheme }
+        });
+    }
+
+    // Initial render
+    renderCal(saved);
+
     // Scroll reveals
     // ───────────────────────────────────────────────
-    gsap.utils.toArray('.stack, .experience, .close').forEach(el => {
+    gsap.utils.toArray('.stack, .experience, .schedule, .close').forEach(el => {
         gsap.fromTo(el, { opacity: 0, y: 40 }, {
             opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
             scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' }
@@ -139,6 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
         themeBtn.setAttribute('aria-pressed', next === 'dark');
         updateThemeColor(next);
         document.body.dispatchEvent(new CustomEvent('themechange', { detail: { theme: next } }));
+        renderCal(next);
     });
 
     // ───────────────────────────────────────────────

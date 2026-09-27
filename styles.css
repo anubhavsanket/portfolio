@@ -280,6 +280,90 @@ body[data-theme="light"] .moon-icon { display: none; }
 }
 
 /* ============================================
+   SCHEDULE
+   ============================================ */
+.schedule {
+    padding: 120px 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+    contain: layout style paint;
+}
+
+.schedule-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 40px;
+}
+
+.schedule-header .label {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 16px;
+}
+
+.schedule-heading {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 8px;
+    color: var(--text);
+}
+
+.schedule-sub {
+    font-family: var(--font);
+    font-size: 16px;
+    color: var(--text-dim);
+    line-height: 1.6;
+    max-width: 500px;
+}
+
+.schedule-pills {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.schedule-pill {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-dim);
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+}
+
+body[data-theme="light"] .schedule-pill {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+.schedule-pill svg {
+    color: var(--accent);
+}
+
+.schedule-embed-wrapper {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    min-height: 600px; /* Pre-allocate space */
+}
+
+/* Light mode wrapper adjust */
+body[data-theme="light"] .schedule-embed-wrapper {
+    background: #ffffff;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+}
+/* ============================================
    NODE GRAPH — Background visualization
    ============================================ */
 #node-graph {
@@ -858,6 +942,8 @@ body[data-theme="light"] .work-tech span {
     .stack { padding: 80px 24px; }
     .stack-grid { grid-template-columns: repeat(2, 1fr); }
     .experience { padding: 0 24px 80px; }
+    .schedule { padding: 80px 24px; }
+    .schedule-header { flex-direction: column; align-items: flex-start; gap: 20px; }
     .work-card { width: 85vw; min-height: 400px; }
 }
 
@@ -873,6 +959,23 @@ body[data-theme="light"] .work-tech span {
     .work-title { font-size: 1.5rem; }
     .work-screenshot { max-width: 100%; }
     .screenshot-code { font-size: 11px; }
+    .schedule-heading { font-size: 1.8rem; }
+    .schedule-pills { flex-wrap: wrap; }
     .hero-footer-left { gap: 12px; }
     .hero-social { gap: 10px; }
+}
+
+/* ============================================
+   CAL.COM EMBED — Theme sync fallback
+   ============================================ */
+body[data-theme="light"] #cal-embed {
+    background: #ffffff;
+}
+
+body[data-theme="dark"] #cal-embed,
+body[data-theme="dark"] #cal-embed iframe,
+body[data-theme="dark"] .cal-embed,
+body[data-theme="dark"] .cal-embed-wrapper {
+    background: #0a0a0a !important;
+    color: #f0f0f0 !important;
 }

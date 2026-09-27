@@ -68,6 +68,7 @@
         <nav class="header-nav">
             <a href="#stack">Stack</a>
             <a href="#work">Work</a>
+            <a href="#schedule">Schedule</a>
         </nav>
         <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" aria-pressed="true">
             <svg class="sun-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
@@ -247,11 +248,39 @@
         </div>
     </section>
 
-    <!-- 5. CLOSE -->
+    <!-- 5. SCHEDULE -->
+    <section class="schedule" id="schedule">
+        <div class="schedule-header">
+            <div class="schedule-header-left">
+                <h2 class="label">Quick call?</h2>
+                <h3 class="schedule-heading">Got 15 minutes?</h3>
+                <p class="schedule-sub">No slides. No pitch. Just a quick intro call — tell me what you're working on.</p>
+            </div>
+            <div class="schedule-pills">
+                <span class="schedule-pill">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    15 min
+                </span>
+                <span class="schedule-pill">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 10l-4 4l-2 -2"/><path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z"/></svg>
+                    Google Meet
+                </span>
+                <span class="schedule-pill">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    IST timezone
+                </span>
+            </div>
+        </div>
+        <div class="schedule-embed-wrapper">
+            <div id="cal-embed"></div>
+        </div>
+    </section>
+
+    <!-- 6. CLOSE
     <section class="close">
         <p class="close-text">Always building. Always learning.</p>
     </section>
-    </main>
+    </main> -->
 
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js" crossorigin="anonymous"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous"></script>

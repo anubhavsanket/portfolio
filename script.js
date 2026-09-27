@@ -154,6 +154,9 @@ document.addEventListener('DOMContentLoaded', () => {
             layout: 'month_view',
             config: { theme: calTheme }
         });
+        
+        // Ensure UI also knows about the theme
+        Cal.ns['quick-call']('ui', { theme: calTheme });
     }
 
     // Initial render

@@ -283,7 +283,7 @@ body[data-theme="light"] .moon-icon { display: none; }
    SCHEDULE
    ============================================ */
 .schedule {
-    padding: 120px 40px;
+    padding: 80px 30px;
     max-width: 1100px;
     margin: 0 auto;
     contain: layout style paint;
@@ -968,14 +968,14 @@ body[data-theme="light"] .work-tech span {
 /* ============================================
    CAL.COM EMBED — Theme sync fallback
    ============================================ */
+#cal-embed {
+    transition: background-color 0.4s ease;
+}
+
 body[data-theme="light"] #cal-embed {
     background: #ffffff;
 }
 
-body[data-theme="dark"] #cal-embed,
-body[data-theme="dark"] #cal-embed iframe,
-body[data-theme="dark"] .cal-embed,
-body[data-theme="dark"] .cal-embed-wrapper {
-    background: #0a0a0a !important;
-    color: #f0f0f0 !important;
+body[data-theme="dark"] #cal-embed {
+    background: #0a0a0a;
 }

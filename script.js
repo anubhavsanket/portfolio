@@ -148,23 +148,29 @@ document.addEventListener('DOMContentLoaded', () => {
             layout: 'month_view',
             config: { theme: saved }
         });
-
-        // Theme-aware Cal UI — updates via postMessage
-        function applyCalTheme(theme) {
-            console.log('Updating Cal theme to:', theme);
-            
-            Cal.ns['quick-call']('ui', {
-                theme: theme,
-                cssVarsPerTheme: {
-                    light: { 'cal-brand': '#1d00ff' },
-                    dark:  { 'cal-brand': '#E2FF00' }
-                }
-            });
-        }
-
-        // Apply UI settings immediately after inline call
-        applyCalTheme(saved);
     }
+
+    // Theme-aware Cal UI — updates via postMessage.
+    // Declared at DOMContentLoaded scope (not inside the `if`) so the theme
+    // toggle listener below can call it.
+    function applyCalTheme(theme) {
+        if (typeof Cal === 'undefined' || !Cal.ns || !Cal.ns['quick-call']) return;
+
+        // Cal.com's embed.js polls the host page's color-scheme and re-themes
+        // the live iframe; this line is what drives that watcher.
+        document.body.style.colorScheme = theme;
+
+        Cal.ns['quick-call']('ui', {
+            theme: theme,
+            cssVarsPerTheme: {
+                light: { 'cal-brand': '#1d00ff' },
+                dark:  { 'cal-brand': '#E2FF00' }
+            }
+        });
+    }
+
+    // Apply UI settings immediately after inline call
+    applyCalTheme(saved);
 
     // Scroll reveals
     // ───────────────────────────────────────────────
